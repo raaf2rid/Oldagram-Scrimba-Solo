@@ -97,6 +97,10 @@ function renderPost() {
 
       bigHeart[i].classList.remove("animation")
 
+      function myTimeOut() {
+        bigHeart[i].classList.add("animation")
+      }
+
 
 
       if (!posts[i].isLiked) {
@@ -113,7 +117,8 @@ function renderPost() {
         heartBtn[i].innerHTML = likeBtn;
         likeCountHtml[i].innerHTML = likeCount
 
-        bigHeart[i].classList.add("animation")
+        setTimeout(myTimeOut, 1)
+
 
         console.log(bigHeart[i])
       } 
@@ -121,11 +126,6 @@ function renderPost() {
       else{
 
         setTimeout(myTimeOut, 1)
-        
-
-        function myTimeOut() {
-          bigHeart[i].classList.add("animation")
-        }
 
   
         console.log(bigHeart[i])
