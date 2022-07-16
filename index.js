@@ -30,11 +30,19 @@ const posts = [
 ];
 
 const mainHtml = document.getElementById("main");
-console.log(posts)
+
+let heartBtn = ''
+let likeCountHtml = ''
+
+let isLiked = false
 
 function renderPost() {
   const profileArray = posts.map((data) => {
-    return `<div class="info">
+    
+    let card = ''
+    
+
+    card = `<div class="info">
               <img src=${data.avatar} class="dp dp-hero" alt="" />
               <div>
               <p class="name">${data.name}</p>
@@ -43,8 +51,8 @@ function renderPost() {
               </div>
               <img src=${data.post} class="post-img" alt="">
               
-              <div class="icons-div">
-              <button class="btn">
+              <div id="icon-div" class="icons-div">
+              <button class="btn heart">
                 <i class="fa-regular fa-heart"></i>
               </button>
               <button class="btn">
@@ -59,10 +67,66 @@ function renderPost() {
                 <p class="likes-count"><strong>${data.likes} likes</strong></p>
                 <p class="comment"><strong>${data.username}</strong> ${data.comment}</p>
             </div>`;
+
+
+      return card
   }).join('');
 
-  // mainHtml.innerHTML = profileArray
+  
+
+  
+  mainHtml.innerHTML = profileArray
+
+  heartBtn = document.querySelectorAll(".heart")
+
+  likeCountHtml = document.querySelectorAll(".likes-count")
+
+  for(let i = 0; i < heartBtn.length; i++){
+
+    heartBtn[i].addEventListener('click', ()=>{
+
+      let likeBtn = ''
+      
+      if(!isLiked){
+        likeBtn = `<i class="fa-solid fa-heart"></i>`
+        isLiked = true
+
+        posts[i].likes+= 1
+
+        renderPost()
+        
+        heartBtn[i].innerHTML = likeBtn
+      
+
+      }
+
+      else{
+
+        likeBtn = `<i class="fa-regular fa-heart"></i>`
+
+        isLiked = false
+        
+        posts[i].likes-= 1
+
+        renderPost()
+        
+        heartBtn[i].innerHTML = likeBtn
+      }
+
+
+    })
+  }
+  
+
+
 }
 
 renderPost();
+
+
+
+
+
+
+
 

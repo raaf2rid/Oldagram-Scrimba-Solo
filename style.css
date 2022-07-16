@@ -80,7 +80,7 @@ header{
 }
 
 .hero{
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 .comment{
@@ -103,4 +103,8 @@ header{
 
 .fa-heart{
   font-size: 30px;
+}
+
+.fa-solid{
+  color: red;
 }
