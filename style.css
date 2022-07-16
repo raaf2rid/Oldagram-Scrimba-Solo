@@ -5,12 +5,15 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-html, body {
+body{
+ display: flex;
+ justify-content: center;
 }
 
 .container{
-  border: 2px solid red;
+  border: 5px solid #EDEDED;
   width: 450px;
+  height: max-content;
 }
 
 header{
@@ -67,6 +70,9 @@ header{
 
 .likes{
   padding-left: 12px;
+  padding-bottom: 20px;
+  border-bottom: 20px solid #EDEDED;
+  margin-bottom: 0;
 }
 
 .likes-count{
@@ -75,7 +81,6 @@ header{
 
 .hero{
   padding-bottom: 20px;
-  border-bottom: 20px solid #EDEDED;
 }
 
 .comment{
