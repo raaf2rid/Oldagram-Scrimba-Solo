@@ -7,6 +7,7 @@ const posts = [
     post: "images/post-vangogh.jpg",
     comment: "just took a few mushrooms lol",
     likes: 21,
+    isLiked: false
   },
   {
     name: "Gustave Courbet",
@@ -16,6 +17,7 @@ const posts = [
     post: "images/post-courbet.jpg",
     comment: "i'm feelin a bit stressed tbh",
     likes: 4,
+    isLiked: false
   },
   {
     name: "Joseph Ducreux",
@@ -26,6 +28,7 @@ const posts = [
     comment:
       "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
     likes: 152,
+    isLiked: false
   },
 ];
 
@@ -36,7 +39,8 @@ let likeCountHtml = "";
 let bigHeart = "";
 let imgDiv = "";
 
-let isLiked = false;
+let likeBtn = "";
+let likeCount = ''
 
 function renderPost() {
   const profileArray = posts
@@ -88,61 +92,82 @@ function renderPost() {
 
   for (let i = 0; i < imgDiv.length; i++) {
     imgDiv[i].addEventListener("dblclick", () => {
-      bigHeart[i].style.animation = null;
 
-      if (!isLiked) {
+      // bigHeart[i].removeAttribute('style');
+
+      bigHeart[i].classList.remove("animation")
+
+
+
+      if (!posts[i].isLiked) {
         likeBtn = `<i class="fa-solid fa-heart"></i>`;
-        isLiked = true;
+
+
 
         posts[i].likes += 1;
+        posts[i].isLiked = true;
 
-        renderPost();
+        likeCount = `<strong>${posts[i].likes} likes</strong>`
+
 
         heartBtn[i].innerHTML = likeBtn;
+        likeCountHtml[i].innerHTML = likeCount
 
-        bigHeart[i].style.animation = "hrtAnimation 2s ease";
-      } else {
-        likeBtn = `<i class="fa-solid fa-heart"></i>`;
+        bigHeart[i].classList.add("animation")
 
-        renderPost();
-        heartBtn[i].innerHTML = likeBtn;
+        console.log(bigHeart[i])
+      } 
 
-        bigHeart[i].style.animation = "hrtAnimation 2s ease";
+      else{
 
-        console.log(bigHeart[i]);
+        setTimeout(myTimeOut, 1)
+        
+
+        function myTimeOut() {
+          bigHeart[i].classList.add("animation")
+        }
+
+  
+        console.log(bigHeart[i])
       }
+      
+        
+      
     });
   }
 
   for (let i = 0; i < heartBtn.length; i++) {
     heartBtn[i].addEventListener("click", () => {
-      let likeBtn = "";
 
-      renderPost();
-
-      console.log(bigHeart[i]);
-
-      if (!isLiked) {
+      
+      if (!posts[i].isLiked) {
         likeBtn = `<i class="fa-solid fa-heart"></i>`;
-        isLiked = true;
 
         posts[i].likes += 1;
+        posts[i].isLiked = true;
 
-        renderPost();
+        likeCount = `<strong>${posts[i].likes} likes</strong>`
+
+
+        bigHeart[i].classList.add("animation")
 
         heartBtn[i].innerHTML = likeBtn;
+        likeCountHtml[i].innerHTML = likeCount
 
-        console.log(bigHeart);
-      } else {
+      } 
+      
+      else{
         likeBtn = `<i class="fa-regular fa-heart"></i>`;
 
-        isLiked = false;
-
         posts[i].likes -= 1;
+        posts[i].isLiked = false;
 
-        renderPost();
+        likeCount = `<strong>${posts[i].likes} likes</strong>`
+
 
         heartBtn[i].innerHTML = likeBtn;
+        likeCountHtml[i].innerHTML = likeCount
+
       }
     });
   }

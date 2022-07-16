@@ -120,9 +120,12 @@ button > .fa-solid{
   font-size: 100px;
   color: #fff;
   opacity: 0.8;
-  animation-delay: 1s;
 }
 
+
+.animation{
+  animation: hrtAnimation 2s ease;
+}
 
 
 @keyframes hrtAnimation{
