@@ -158,3 +158,12 @@ button > .fa-solid{
     transform: scale(0);
   }
 }
+
+
+@media (max-width : 600px){
+
+  .container{
+    width: 100%;
+  }
+
+}
