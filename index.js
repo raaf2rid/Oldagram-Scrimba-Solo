@@ -115,7 +115,7 @@ function renderPost() {
   }
 
   for (let i = 0; i < heartBtn.length; i++) {
-    heartBtn[i].addEventListener("click", () => {g
+    heartBtn[i].addEventListener("click", () => {
       let likeBtn = "";
 
       renderPost();
