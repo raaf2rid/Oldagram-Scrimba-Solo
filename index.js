@@ -7,7 +7,7 @@ const posts = [
     post: "images/post-vangogh.jpg",
     comment: "just took a few mushrooms lol",
     likes: 21,
-    isLiked: false
+    isLiked: false,
   },
   {
     name: "Gustave Courbet",
@@ -17,7 +17,7 @@ const posts = [
     post: "images/post-courbet.jpg",
     comment: "i'm feelin a bit stressed tbh",
     likes: 4,
-    isLiked: false
+    isLiked: false,
   },
   {
     name: "Joseph Ducreux",
@@ -28,7 +28,7 @@ const posts = [
     comment:
       "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
     likes: 152,
-    isLiked: false
+    isLiked: false,
   },
 ];
 
@@ -40,7 +40,7 @@ let bigHeart = "";
 let imgDiv = "";
 
 let likeBtn = "";
-let likeCount = ''
+let likeCount = "";
 
 function renderPost() {
   const profileArray = posts
@@ -92,82 +92,56 @@ function renderPost() {
 
   for (let i = 0; i < imgDiv.length; i++) {
     imgDiv[i].addEventListener("dblclick", () => {
-
       // bigHeart[i].removeAttribute('style');
 
-      bigHeart[i].classList.remove("animation")
+      bigHeart[i].classList.remove("animation");
 
       function myTimeOut() {
-        bigHeart[i].classList.add("animation")
+        bigHeart[i].classList.add("animation");
       }
-
-
 
       if (!posts[i].isLiked) {
         likeBtn = `<i class="fa-solid fa-heart"></i>`;
 
-
-
         posts[i].likes += 1;
         posts[i].isLiked = true;
 
-        likeCount = `<strong>${posts[i].likes} likes</strong>`
-
+        likeCount = `<strong>${posts[i].likes} likes</strong>`;
 
         heartBtn[i].innerHTML = likeBtn;
-        likeCountHtml[i].innerHTML = likeCount
+        likeCountHtml[i].innerHTML = likeCount;
 
-        setTimeout(myTimeOut, 1)
-
-
-        console.log(bigHeart[i])
-      } 
-
-      else{
-
-        setTimeout(myTimeOut, 1)
-
-  
-        console.log(bigHeart[i])
+        setTimeout(myTimeOut, 1);
+      } else {
+        setTimeout(myTimeOut, 1);
       }
-      
-        
-      
     });
   }
 
   for (let i = 0; i < heartBtn.length; i++) {
     heartBtn[i].addEventListener("click", () => {
-
-      
       if (!posts[i].isLiked) {
         likeBtn = `<i class="fa-solid fa-heart"></i>`;
 
         posts[i].likes += 1;
         posts[i].isLiked = true;
 
-        likeCount = `<strong>${posts[i].likes} likes</strong>`
+        likeCount = `<strong>${posts[i].likes} likes</strong>`;
 
-
-        bigHeart[i].classList.add("animation")
+        bigHeart[i].classList.add("animation");
 
         heartBtn[i].innerHTML = likeBtn;
-        likeCountHtml[i].innerHTML = likeCount
-
-      } 
-      
-      else{
+        likeCountHtml[i].innerHTML = likeCount;
+      } else {
         likeBtn = `<i class="fa-regular fa-heart"></i>`;
 
         posts[i].likes -= 1;
         posts[i].isLiked = false;
 
-        likeCount = `<strong>${posts[i].likes} likes</strong>`
-
+        likeCount = `<strong>${posts[i].likes} likes</strong>`;
 
         heartBtn[i].innerHTML = likeBtn;
-        likeCountHtml[i].innerHTML = likeCount
-
+        likeCountHtml[i].innerHTML = likeCount;
       }
     });
   }
