@@ -31,20 +31,19 @@ const posts = [
 
 const mainHtml = document.getElementById("main");
 
-let heartBtn = ''
-let likeCountHtml = ''
-let bigHeart = ''
-let imgDiv = ''
+let heartBtn = "";
+let likeCountHtml = "";
+let bigHeart = "";
+let imgDiv = "";
 
-let isLiked = false
+let isLiked = false;
 
 function renderPost() {
-  const profileArray = posts.map((data) => {
-    
-    let card = ''
-    
+  const profileArray = posts
+    .map((data) => {
+      let card = "";
 
-    card = `<div class="info">
+      card = `<div class="info">
               <img src=${data.avatar} class="dp dp-hero" alt="" />
               <div>
               <p class="name">${data.name}</p>
@@ -73,116 +72,80 @@ function renderPost() {
                 <p class="comment"><strong>${data.username}</strong> ${data.comment}</p>
             </div>`;
 
-
-      return card
-  }).join('');
-
-  
-
-  
-  mainHtml.innerHTML = profileArray
-
-
-
-  heartBtn = document.querySelectorAll(".heart")
-
-  likeCountHtml = document.querySelectorAll(".likes-count")
-
-  bigHeart = document.querySelectorAll(".dbl-click-heart")
-
-  imgDiv = document.querySelectorAll(".post---div")
-
-  for(let i = 0; i < imgDiv.length; i++){
-    imgDiv[i].addEventListener('dblclick', () =>{
-
-      bigHeart[i].style.animation = null
-
-      if(!isLiked){
-        likeBtn = `<i class="fa-solid fa-heart"></i>`
-        isLiked = true
-
-        posts[i].likes+= 1
-
-        renderPost()
-        
-        
-        heartBtn[i].innerHTML = likeBtn
-
-        bigHeart[i].style.animation = "hrtAnimation 2s ease"
-
-
-      }
-
-      else{
-        
-        likeBtn = `<i class="fa-solid fa-heart"></i>`
-
-        renderPost()
-        heartBtn[i].innerHTML = likeBtn
-      
-        bigHeart[i].style.animation = "hrtAnimation 2s ease"
-        
-        console.log(bigHeart[i])
-        
-      }
-      
+      return card;
     })
+    .join("");
+
+  mainHtml.innerHTML = profileArray;
+
+  heartBtn = document.querySelectorAll(".heart");
+
+  likeCountHtml = document.querySelectorAll(".likes-count");
+
+  bigHeart = document.querySelectorAll(".dbl-click-heart");
+
+  imgDiv = document.querySelectorAll(".post---div");
+
+  for (let i = 0; i < imgDiv.length; i++) {
+    imgDiv[i].addEventListener("dblclick", () => {
+      bigHeart[i].style.animation = null;
+
+      if (!isLiked) {
+        likeBtn = `<i class="fa-solid fa-heart"></i>`;
+        isLiked = true;
+
+        posts[i].likes += 1;
+
+        renderPost();
+
+        heartBtn[i].innerHTML = likeBtn;
+
+        bigHeart[i].style.animation = "hrtAnimation 2s ease";
+      } else {
+        likeBtn = `<i class="fa-solid fa-heart"></i>`;
+
+        renderPost();
+        heartBtn[i].innerHTML = likeBtn;
+
+        bigHeart[i].style.animation = "hrtAnimation 2s ease";
+
+        console.log(bigHeart[i]);
+      }
+    });
   }
 
-  
+  for (let i = 0; i < heartBtn.length; i++) {
+    heartBtn[i].addEventListener("click", () => {g
+      let likeBtn = "";
 
-  for(let i = 0; i < heartBtn.length; i++){
+      renderPost();
 
-    heartBtn[i].addEventListener('click', ()=>{
+      console.log(bigHeart[i]);
 
-      
+      if (!isLiked) {
+        likeBtn = `<i class="fa-solid fa-heart"></i>`;
+        isLiked = true;
 
-      let likeBtn = ''
+        posts[i].likes += 1;
 
-      renderPost()
+        renderPost();
 
-      console.log(bigHeart[i])
-      
-      if(!isLiked){
-        likeBtn = `<i class="fa-solid fa-heart"></i>`
-        isLiked = true
+        heartBtn[i].innerHTML = likeBtn;
 
-        posts[i].likes+= 1
+        console.log(bigHeart);
+      } else {
+        likeBtn = `<i class="fa-regular fa-heart"></i>`;
 
-        renderPost()
-        
-        heartBtn[i].innerHTML = likeBtn
-      
-        console.log(bigHeart)
+        isLiked = false;
 
+        posts[i].likes -= 1;
+
+        renderPost();
+
+        heartBtn[i].innerHTML = likeBtn;
       }
-
-      else{
-
-        likeBtn = `<i class="fa-regular fa-heart"></i>`
-
-        isLiked = false
-        
-        posts[i].likes-= 1
-
-        renderPost()
-        
-        heartBtn[i].innerHTML = likeBtn
-      }
-
-
-    })
+    });
   }
-
-  
 }
 
 renderPost();
-
-
-
-
-
-
-
-
