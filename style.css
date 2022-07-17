@@ -160,7 +160,7 @@ button > .fa-solid{
 }
 
 
-@media (max-width : 600px){
+@media (max-width : 500px){
 
   .container{
     width: 100vw;
